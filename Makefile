@@ -20,10 +20,10 @@ all						:	${NAME} ${NAME_CLIENT}
 ${NAME}					:	$(OBJS_STACK)
 							$(CC) $(CC_FLAGS) $(OBJS_STACK) $(OBJS_SHARED) -o $(NAME)
 
-#debug					:	${NAME}_debug ${NAME_CLIENT}_debug
+debug					:	${NAME}_debug
 
-#${NAME}_debug	:	$(OBJS_STACK) $(OBJS_SHARED)
-#							$(CC) $(CC_FLAGS) $(CC_FDEBUG) $(OBJS_STACK) $(OBJS_SHARED) -o $(NAME)_debug
+${NAME}_debug			:	$(OBJS_STACK)
+							$(CC) $(CC_FLAGS) $(CC_FDEBUG) $(OBJS_STACK) -o $(NAME)_debug
 
 clean					:
 							$(RM) $(OBJS_STACK)
