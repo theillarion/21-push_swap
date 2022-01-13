@@ -6,7 +6,7 @@
 /*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:05:56 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/12 16:36:14 by glashli          ###   ########.fr       */
+/*   Updated: 2022/01/12 17:34:58 by glashli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,17 @@ static t_stack	*ft_create_elem(int	data)
 
 void	ft_push(t_stack	**head, int data)
 {
+	t_stack	*new_head;
+	
 	if (head != NULL)
 	{
+		new_head = ft_create_elem(data);
 		if (*head == NULL)
-			*head = ft_create_elem(data);
+			*head = new_head;
 		else
 		{
-			while ((*head)->next != NULL)
-				(*head) = (*head)->next;
-			(*head)->next = ft_create_elem(data);
+			new_head->next = *head;
+			*head = new_head;
 		}
 	}
 	else
@@ -54,15 +56,8 @@ void	ft_push_array(t_stack	**head, int	*array, size_t	length)
 	if (head != NULL)
 	{
 		i = 0;
-		if (*head == NULL)
-			*head = ft_create_elem(array[i++]);
-		while ((*head)->next != NULL)
-			(*head) = (*head)->next;
 		while (i < length)
-		{
-			(*head)->next = ft_create_elem(array[i++]);
-			*head = (*head)->next;
-		}
+			ft_push(head, array[i++]);
 	}
 	else
 	{

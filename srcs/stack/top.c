@@ -6,7 +6,7 @@
 /*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:05:16 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/12 16:09:47 by glashli          ###   ########.fr       */
+/*   Updated: 2022/01/12 17:37:37 by glashli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ int	ft_top(t_stack	**head)
 			write(2, "Error: stack is empty\n", 22);
 			exit(EXIT_FAILURE);
 		}
-		while ((*head)->next != NULL)
-			*head = (*head)->next;
-		return ((*head)->data);
+		else
+			return ((*head)->data);
 	}
 	else
 	{
