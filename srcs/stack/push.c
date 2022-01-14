@@ -16,7 +16,7 @@ static t_stack	*ft_create_elem(int	data)
 {
 	t_stack*	new_elem;
 
-	new_elem = (t_stack*)malloc(sizeof(new_elem));
+	new_elem = (t_stack*)malloc(sizeof(t_stack));
 	if (new_elem == NULL)
 	{
 		write(2, "Error: no memory allocated\n", 27);
