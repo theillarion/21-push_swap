@@ -5,31 +5,35 @@ valgrind --leak-check=full --leak-resolution=high --log-file=leaks.log -s ./push
 heap_allocs=$(cat leaks.log | grep "total heap usage" | awk '{print($5)}')
 heap_frees=$(cat leaks.log | grep "total heap usage" | awk '{print($7)}')
 
-error_summary_errors=$(cat leaks.log | grep "ERROR SUMMARY" | awk '{print($4)}')
-error_summary_context=$(cat leaks.log | grep "ERROR SUMMARY" | awk '{print($7)}')
+leaks=$(cat leaks.log | grep "LEAK SUMMARY")
 
-leak_summary=$(cat leaks.log | grep "LEAK SUMMARY")
+errors=$(cat leaks.log | grep "ERROR SUMMARY" | awk '{print($4)}')
+errors_context=$(cat leaks.log | grep "ERROR SUMMARY" | awk '{print($7)}')
 
-echo -n "Heap: " 
 if [ "${heap_allocs}" == "${heap_frees}" ]; then
-	echo -e "\033[32mOK\033[0m"
+	heap_result="\033[32mOK\033[0m"
 else
-	echo -e "\033[31mKO\n$(cat leaks.log | grep "total heap usage")\033[0m"
+	heap_result="\033[31mKO\n$(cat leaks.log | grep "total heap usage")\033[0m"
 fi
 
-echo -n "LEAK SUMMARY: "
-if [ -z "${leak_summary}" ]; then
-	echo -e "\033[32mOK\033[0m"
+if [ -z "${leaks}" ]; then
+	leaks_result="\033[32mOK\033[0m"
 else
-	echo -e "\033[31mKO\n$(leak_summary)\033[0m"
+	leaks_result="\033[31mKO\n$(leaks)\033[0m"
 fi
 
-echo -n "ERROR SUMMARY: "
-if [ "${error_summary_errors}" == "${error_summary_context}" ]; then
-	echo -e "\033[32mOK\033[0m"
+if [ "${errors}" == "${errors_context}" ]; then
+	errors_result="\033[32mOK\033[0m"
 else
-	echo -e "\033[31mKO\n$(cat leaks.log | grep "ERROR SUMMARY")\033[0m"
+	errors_result="\033[31mKO\n$(cat leaks.log | grep "ERROR SUMMARY")\033[0m"
 fi
+
+echo -e \
+"\
+Heap: $heap_result
+LEAK SUMMARY: $leaks_result
+ERROR SUMMARY: $errors_result\
+"
 
 if [ -n "leaks.log" ]; then
 	rm -f leaks.log
