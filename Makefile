@@ -30,8 +30,7 @@ clean					:
 # $(OBJS_CLIENT) $(OBJS_SHARED)
 
 fclean					:	clean 
-							$(RM) $(NAME)
-# $(NAME_CLIENT) $(NAME)_debug $(NAME_CLIENT)_debug
+							$(RM) $(NAME) $(NAME)_debug
 
 re						:	fclean all
 
