@@ -51,3 +51,13 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# CMakeFile
+CMake*
+cmake*
+
+# Clion
+.idea
+
+# VS Code
+.vscode
