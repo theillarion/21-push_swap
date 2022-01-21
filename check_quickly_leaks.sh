@@ -1,31 +1,42 @@
 #!/bin/bash
 
-valgrind --leak-check=full --leak-resolution=high --log-file=leaks.log -s ./push_swap > /dev/null
+if [ ! -n "$1" ]; then
+	echo "Error"
+	exit 1
+fi
 
-heap_allocs=$(cat leaks.log | grep "total heap usage" | awk '{print($5)}')
-heap_frees=$(cat leaks.log | grep "total heap usage" | awk '{print($7)}')
+make > /dev/null
+valgrind --leak-check=full --leak-resolution=high --log-file=leaks.log -s $1 > /dev/null
 
-leaks=$(cat leaks.log | grep "LEAK SUMMARY")
+awk '{$1=""; print $0}' leaks.log > new_leaks.log
 
-errors=$(cat leaks.log | grep "ERROR SUMMARY" | awk '{print($4)}')
-errors_context=$(cat leaks.log | grep "ERROR SUMMARY" | awk '{print($7)}')
+heap_allocs=$(cat new_leaks.log | grep "total heap usage" | awk '{print($4)}')
+heap_frees=$(cat new_leaks.log | grep "total heap usage" | awk '{print($6)}')
+
+leaks=$(cat new_leaks.log | grep "LEAK SUMMARY")
+
+errors=$(cat new_leaks.log | grep "ERROR SUMMARY" | awk '{print($3)}')
+errors_context=$(cat new_leaks.log | grep "ERROR SUMMARY" | awk '{print($6)}')
 
 if [ "${heap_allocs}" == "${heap_frees}" ]; then
 	heap_result="\033[32mOK\033[0m"
 else
-	heap_result="\033[31mKO\n$(cat leaks.log | grep "total heap usage")\033[0m"
+	heap_result="\033[31mKO\n$(cat new_leaks.log | grep "total heap usage")\033[0m"
 fi
 
 if [ -z "${leaks}" ]; then
 	leaks_result="\033[32mOK\033[0m"
 else
-	leaks_result="\033[31mKO\n$(leaks)\033[0m"
+	line_start=$(cat new_leaks.log | grep -n "LEAK SUMMARY" | grep -Eo '^[^:]+')
+	(( line_start++ ))
+	line_end="$(( line_start + 4 ))"
+	leaks_result="\033[31mKO\n$(sed -n "${line_start},${line_end}p" new_leaks.log)\033[0m"
 fi
 
 if [ "${errors}" == "${errors_context}" ]; then
 	errors_result="\033[32mOK\033[0m"
 else
-	errors_result="\033[31mKO\n$(cat leaks.log | grep "ERROR SUMMARY")\033[0m"
+	errors_result="\033[31mKO\n$(cat new_leaks.log | grep "ERROR SUMMARY" | sort | uniq )\033[0m"
 fi
 
 echo -e \
@@ -37,4 +48,7 @@ ERROR SUMMARY: $errors_result\
 
 if [ -n "leaks.log" ]; then
 	rm -f leaks.log
+fi
+if [ -n "new_leaks.log" ]; then
+	rm -f new_leaks.log
 fi
