@@ -6,7 +6,7 @@
 /*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 19:25:15 by illarion          #+#    #+#             */
-/*   Updated: 2022/01/24 15:00:32 by illarion         ###   ########.fr       */
+/*   Updated: 2022/01/25 00:01:25 by illarion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 #include "libft.h"
 #include <stdio.h>
 
-void	ft_error(t_stack	*stack)
+void	ft_error(t_vector	*vector)
 {
-	while (!ft_empty(&stack))
-		ft_pop(&stack);
+	ft_delete_vector(vector);
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
@@ -25,16 +24,18 @@ void	ft_error(t_stack	*stack)
 bool	ft_chars_is_digit(const char	*str)
 {
 	while (*str)
-		if (!ft_isdigit(*(str++)))
+	{
+		if (!ft_isdigit(*str) && *str != '-')
 			return (false);
+		++str;
+	}
 	return (true);
 }
 
-t_stack	*ft_fill_stack(char	**argv)
+void	ft_fill_vector(t_vector	*vector,char	**argv)
 {
-	size_t	i;
-	char	**buff;
-	t_stack	*stack;
+	size_t		i;
+	char		**buff;
 
 	while (*argv)
 	{
@@ -44,13 +45,12 @@ t_stack	*ft_fill_stack(char	**argv)
 		while (buff[i] != NULL)
 		{
 			if (!ft_chars_is_digit(buff[i]))
-				ft_error(stack);
-			ft_push(&stack, ft_atoi(buff[i]));
+				ft_error(vector);
+			ft_push_back(vector, ft_atoi(buff[i]));
 			free(buff[i++]);
 		}
 		free(buff);
 	}
-	return (stack);
 }
 
 void	print_stack(t_stack	*stack)
@@ -66,18 +66,42 @@ void	print_stack(t_stack	*stack)
 	printf("\n");
 }
 
+void	ft_print_vector(const t_vector vector)
+{
+	size_t	i;
+
+	i = 0;
+	printf("Count: %ld\nElements:\n", vector.count);
+	while (i < vector.count)
+	{
+		if (i == vector.count - 1)
+			printf("%d\n", vector.elements[i]);
+		else
+			printf("%d -> ", vector.elements[i]);
+		++i;
+	}
+	printf("\n");
+}
+
 int	main(int argc, char	**argv)
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_vector	vector;
+	t_stack		*a;
+	t_stack		*b;
 
-
+	(void)a;
 	(void)b;
 	(void)argc;
+	ft_initial(&vector);
 	if (argc > 1)
 	{
-		a = ft_fill_stack(++argv);
-		print_stack(a);
+		ft_fill_vector(&vector, ++argv);
+		ft_print_vector(vector);
+		if (!ft_validation(&vector))
+		{
+			write(1, "Error: not validation\n", 22);
+			exit(EXIT_FAILURE);
+		}
 		exit(EXIT_SUCCESS);
 	}
 	else

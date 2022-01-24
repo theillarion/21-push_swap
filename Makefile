@@ -9,12 +9,15 @@ CC_FLAGS		=	-Wall -Werror -Wextra
 CC_FLAGS_D		=	-g
 SRC_MAIN		=	srcs/main.c
 SRCS_STACK		=	${shell find srcs/stack -name "*.c"}
+SRCS_VECTOR		=	${shell find srcs/vector -name "*.c"}
 SRCS_OPERS		=	${shell find srcs/operations -name "*.c"}
 OBJ_MAIN		=	${SRC_MAIN:%.c=%.o}
 OBJS_STACK		=	${SRCS_STACK:%.c=%.o}
+OBJS_VECTOR		=	${SRCS_VECTOR:%.c=%.o}
 OBJS_OPERS		=	${SRCS_OPERS:%.c=%.o}
 OBJ_MAIN_D		=	${SRC_MAIN:%.c=%_debug.o}
 OBJS_STACK_D	=	${SRCS_STACK:%.c=%_debug.o}
+OBJS_VECTOR_D	=	${SRCS_VECTOR:%.c=%_debug.o}
 OBJS_OPERS_D	=	${SRCS_OPERS:%.c=%_debug.o}
 INCLUDES		=	-Iincludes
 RM				=	rm -rf
@@ -27,19 +30,19 @@ RM				=	rm -rf
 
 all				:	$(LIB_NAME) ${NAME}
 
-${NAME}			:	$(OBJ_MAIN) $(OBJS_STACK) $(OBJS_OPERS)
+${NAME}			:	$(OBJ_MAIN) $(OBJS_STACK) ${OBJS_VECTOR} $(OBJS_OPERS)
 					$(CC) $(INCLUDES) $^ -L${LIB_PATH} -l$(LIB_NAME_S) -o $(NAME)
 
 debug			:	$(LIB_NAME) ${NAME_D}
 
-${NAME_D}		:	$(OBJ_MAIN_D) $(OBJS_STACK_D) $(OBJS_OPERS_D)
+${NAME_D}		:	$(OBJ_MAIN_D) $(OBJS_STACK_D) ${OBJS_VECTOR_D} $(OBJS_OPERS_D)
 					$(CC) $(INCLUDES) $^ -L${LIB_PATH} -l$(LIB_NAME_S) -o ${NAME_D}
 
 $(LIB_NAME)		:	
 					@$(MAKE) -C $(LIB_PATH)
 
 clean			:
-					$(RM) ${OBJ_MAIN} $(OBJS_STACK) $(OBJS_OPERS) ${OBJ_MAIN_D} ${OBJS_OPERS_D} ${OBJS_STACK_D}
+					$(RM) ${OBJ_MAIN} $(OBJS_STACK) ${OBJS_VECTOR} $(OBJS_OPERS) ${OBJ_MAIN_D} ${OBJS_OPERS_D} ${OBJS_STACK_D} ${OBJS_VECTOR_D}
 					@${MAKE} clean -C ${LIB_PATH}
 
 fclean			:	clean 
