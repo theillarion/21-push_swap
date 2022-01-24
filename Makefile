@@ -1,6 +1,7 @@
 NAME			=	push_swap
 NAME_D			=	${NAME}_debug
 LIB_NAME		=	libft.a
+LIB_NAME_D		=	libft_debug.a
 LIB_NAME_S		=	ft
 LIB_PATH		=	lib/libft/
 CC 				=	gcc
@@ -27,18 +28,19 @@ RM				=	rm -rf
 all				:	$(LIB_NAME) ${NAME}
 
 ${NAME}			:	$(OBJ_MAIN) $(OBJS_STACK) $(OBJS_OPERS)
-					$(CC) $(CC_FLAGS) $(INCLUDES) $^ -L${LIB_PATH} -l$(LIB_NAME_S) -o $(NAME)
+					$(CC) $(INCLUDES) $^ -L${LIB_PATH} -l$(LIB_NAME_S) -o $(NAME)
 
 debug			:	$(LIB_NAME) ${NAME_D}
 
 ${NAME_D}		:	$(OBJ_MAIN_D) $(OBJS_STACK_D) $(OBJS_OPERS_D)
-					$(CC) $(CC_FLAGS) $(INCLUDES) $^ -L${LIB_PATH} -l$(LIB_NAME_S) -o ${NAME_D}
+					$(CC) $(INCLUDES) $^ -L${LIB_PATH} -l$(LIB_NAME_S) -o ${NAME_D}
 
 $(LIB_NAME)		:	
 					@$(MAKE) -C $(LIB_PATH)
 
 clean			:
 					$(RM) ${OBJ_MAIN} $(OBJS_STACK) $(OBJS_OPERS) ${OBJ_MAIN_D} ${OBJS_OPERS_D} ${OBJS_STACK_D}
+					@${MAKE} clean -C ${LIB_PATH}
 
 fclean			:	clean 
 					$(RM) $(NAME) ${NAME_D}
