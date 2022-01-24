@@ -1,42 +1,49 @@
 NAME			=	push_swap
+NAME_D			=	${NAME}_debug
 LIB_NAME		=	libft.a
-LIB_SNAME		=	ft
+LIB_NAME_S		=	ft
 LIB_PATH		=	lib/libft/
 CC 				=	gcc
 CC_FLAGS		=	-Wall -Werror -Wextra
-CC_FDEBUG		=	-g
+CC_FLAGS_D		=	-g
 SRC_MAIN		=	srcs/main.c
 SRCS_STACK		=	${shell find srcs/stack -name "*.c"}
-SRCS_OPERATIONS	=	${shell find srcs/operations -name "*.c"}
-OBJ_MAIN		=	${SRC_MAIN:.c=.o}
-OBJS_STACK		=	${SRCS_STACK:.c=.o}
-OBJS_OPERATIONS	=	${SRCS_OPERATIONS:.c=.o}
+SRCS_OPERS		=	${shell find srcs/operations -name "*.c"}
+OBJ_MAIN		=	${SRC_MAIN:%.c=%.o}
+OBJS_STACK		=	${SRCS_STACK:%.c=%.o}
+OBJS_OPERS		=	${SRCS_OPERS:%.c=%.o}
+OBJ_MAIN_D		=	${SRC_MAIN:%.c=%_debug.o}
+OBJS_STACK_D	=	${SRCS_STACK:%.c=%_debug.o}
+OBJS_OPERS_D	=	${SRCS_OPERS:%.c=%_debug.o}
 INCLUDES		=	-Iincludes
 RM				=	rm -rf
 
-.c.o					:	
-							$(CC) $(INCLUDES) $(CC_FLAGS) -c $< -o $(<:.c=.o)
+%.o				:	%.c
+					$(CC) ${CC_FLAGS} ${INCLUDES} -c $< -o $@
 
-all						:	$(LIB_NAME) ${NAME}
+%_debug.o		:	%.c
+					$(CC) ${CC_FLAGS_D} ${CC_FLAGS} ${INCLUDES} -c $< -o $@
 
-${NAME}					:	$(OBJ_MAIN) $(OBJS_STACK) $(OBJS_OPERATIONS)
-							$(CC) $(CC_FLAGS) $(INCLUDES) $(OBJ_MAIN) $(OBJS_STACK) $(OBJS_OPERATIONS) -L${LIB_PATH} -l$(LIB_SNAME) -o $(NAME)
+all				:	$(LIB_NAME) ${NAME}
 
-debug					:	$(LIB_NAME) ${NAME}_debug
+${NAME}			:	$(OBJ_MAIN) $(OBJS_STACK) $(OBJS_OPERS)
+					$(CC) $(CC_FLAGS) $(INCLUDES) $^ -L${LIB_PATH} -l$(LIB_NAME_S) -o $(NAME)
 
-${NAME}_debug			:	$(OBJ_MAIN) $(OBJS_STACK) $(OBJS_OPERATIONS)
-							$(CC) $(CC_FLAGS) $(CC_FDEBUG) $(OBJ_MAIN) $(OBJS_STACK) $(OBJS_OPERATIONS) -L${LIB_PATH} -l$(LIB_SNAME) -o $(NAME)_debug
+debug			:	$(LIB_NAME) ${NAME_D}
 
-$(LIB_NAME)				:	
-							@$(MAKE) -C $(LIB_PATH)
+${NAME_D}		:	$(OBJ_MAIN_D) $(OBJS_STACK_D) $(OBJS_OPERS_D)
+					$(CC) $(CC_FLAGS) $(INCLUDES) $^ -L${LIB_PATH} -l$(LIB_NAME_S) -o ${NAME_D}
 
-clean					:
-							$(RM) $(OBJS_STACK) $(OBJS_OPERATIONS)
+$(LIB_NAME)		:	
+					@$(MAKE) -C $(LIB_PATH)
 
-fclean					:	clean 
-							$(RM) $(NAME) $(NAME)_debug
-							@$(MAKE) fclean -C $(LIB_PATH)
+clean			:
+					$(RM) ${OBJ_MAIN} $(OBJS_STACK) $(OBJS_OPERS) ${OBJ_MAIN_D} ${OBJS_OPERS_D} ${OBJS_STACK_D}
 
-re						:	fclean all
+fclean			:	clean 
+					$(RM) $(NAME) ${NAME_D}
+					@$(MAKE) fclean -C $(LIB_PATH)
 
-.PHONY					:	all clean fclean re
+re				:	fclean all
+
+.PHONY			:	all clean fclean re debug

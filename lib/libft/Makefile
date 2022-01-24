@@ -1,42 +1,38 @@
-HEADER			=	libft.h
-COMMON_SRCS		=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memccpy.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_striteri.c ft_split.c ft_strchr.c ft_strdup.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
-BONUS_SRCS		=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c
-COMMON_OBJS		=	${COMMON_SRCS:.c=.o}
-BONUS_OBJS		=	${BONUS_SRCS:.c=.o}
-INCLUDES		=	-I.
-NAME			=	libft
-NAME_PROG		=	libft.a
-NAME_PROG_BONUS	=	libft_bonus.a
-COMPILER		=	gcc
-FLAGS_COMP		=	-Wall -Werror -Wextra
-FLAGS_LINUX		=	-shared -fPIC
+NAME			=	libft.a
+NAME_B			=	libft_bonus.a
+CC				=	gcc
+CC_FLAGS		=	-Wall -Werror -Wextra
 LIB				=	ar
-EXT_LIB_MAC		=	.a
-EXT_LIB_LINUX	=	.so
-FLAGS_LIB		=	rcs
+LIB_FLAGS		=	rcs
+SRCS			=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memccpy.c \
+					ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c \
+					ft_striteri.c ft_split.c ft_strchr.c ft_strdup.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c \
+					ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
+SRCS_B			=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c
+OBJS			=	${SRCS:.c=.o}
+OBJS_B			=	${SRCS_B:.c=.o}
+INCLUDES		=	-I.
 RM				=	rm -rf
 
-.c.o				:
-						${COMPILER} ${INCLUDES} ${FLAGS_COMP} -c $< -o ${<:.c=.o}
+%.o			:	%.c
+				${CC} ${CC_FLAGS} ${INCLUDES} -c $< -o $@
 
-all					:	${NAME_PROG}
+all			:	${NAME}
 
-bonus				:	${NAME_PROG_BONUS}
+${NAME} 	:	${OBJS}
+				${LIB} ${LIB_FLAGS} ${NAME} $?
 
-${NAME_PROG} 		:	${COMMON_OBJS}
-						${LIB} ${FLAGS_LIB} ${NAME_PROG} ${COMMON_OBJS}
+bonus		:	${NAME_B}
 
-${NAME_PROG_BONUS}	:	${COMMON_OBJS} ${BONUS_OBJS}
-								${LIB} ${FLAGS_LIB} ${NAME_PROG_BONUS} ${COMMON_OBJS} ${BONUS_OBJS}
-#so							:	
-#								${COMPILER} ${FLAGS_LINUX} -o ${NAME_PROG}${EXT_LIB_LINUX} ${INCLUDES} ${COMMON_SRCS}
+${NAME_B}	:	${OBJS} ${OBJS_B}
+				${LIB} ${LIB_FLAGS} ${NAME_B} $?
 
-clean				:
-						${RM} ${COMMON_OBJS} ${BONUS_OBJS}
+clean		:
+				${RM} ${OBJS} ${OBJS_B}
 	
-fclean				:	clean
-						${RM} ${NAME_PROG} ${NAME_PROG_BONUS}
+fclean		:	clean
+				${RM} ${NAME} ${NAME_B}
 
-re					:	fclean ${NAME_PROG}
+re			:	fclean ${NAME}
 
-.PHONY				:	all clean fclean re bonus
+.PHONY		:	all bonus clean fclean re
