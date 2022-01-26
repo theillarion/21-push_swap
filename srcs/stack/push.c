@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:05:56 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/12 17:34:58 by glashli          ###   ########.fr       */
+/*   Updated: 2022/01/26 18:22:13 by illarion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_stack	*ft_create_elem(int	data)
 	return (new_elem);
 }
 
-void	ft_push(t_stack	**head, int data)
+void	ft_push_front(t_stack	**head, int data)
 {
 	t_stack	*new_head;
 	
@@ -57,7 +57,7 @@ void	ft_push_array(t_stack	**head, int	*array, size_t	length)
 	{
 		i = 0;
 		while (i < length)
-			ft_push(head, array[i++]);
+			ft_push_front(head, array[i++]);
 	}
 	else
 	{

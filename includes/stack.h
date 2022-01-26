@@ -14,7 +14,7 @@ typedef struct s_stack
 void	ft_pop(t_stack	**head);
 int		ft_top(t_stack	**head);
 bool	ft_empty(t_stack	**head);
-void	ft_push(t_stack	**head, int data);
+void	ft_push_front(t_stack	**head, int data);
 void	ft_push_array(t_stack	**head, int	*array, size_t	length);
 size_t	ft_size(t_stack	**head);
 
