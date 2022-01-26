@@ -10,7 +10,7 @@ static void	ft_xor_swap(int	*element1, int	*element2)
 	}
 }
 
-bool	ft_sort(t_vector	*vector)
+bool	ft_sort_vector(t_vector	*vector)
 {
 	size_t	count;
 	size_t	i;
