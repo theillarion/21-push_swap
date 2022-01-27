@@ -30,6 +30,8 @@ RM				=	rm -rf
 
 all				:	$(LIB_NAME) ${NAME}
 
+all_clean		:	$(LIB_NAME) ${NAME} clean
+
 ${NAME}			:	$(OBJ_MAIN) $(OBJS_STACK) ${OBJS_VECTOR} $(OBJS_OPERS)
 					$(CC) $(INCLUDES) $^ -L${LIB_PATH} -l$(LIB_NAME_S) -o $(NAME)
 
@@ -51,4 +53,4 @@ fclean			:	clean
 
 re				:	fclean all
 
-.PHONY			:	all clean fclean re debug
+.PHONY			:	all all_clean debug clean fclean re
