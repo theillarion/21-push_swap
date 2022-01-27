@@ -10,9 +10,9 @@ void	ft_initial_struct(t_main	*main_struct)
 
 void	ft_deinitial_struct(t_main	*main_struct)
 {
-	while (!ft_empty(&main_struct->a))
+	while (!ft_empty(main_struct->a))
 		ft_pop(&main_struct->a);
-	while (!ft_empty(&main_struct->b))
+	while (!ft_empty(main_struct->b))
 		ft_pop(&main_struct->b);
 	ft_delete_vector(&main_struct->digits);
 	ft_delete_vector(&main_struct->operations);

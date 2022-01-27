@@ -6,7 +6,7 @@
 /*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 19:25:15 by illarion          #+#    #+#             */
-/*   Updated: 2022/01/27 20:12:13 by illarion         ###   ########.fr       */
+/*   Updated: 2022/01/28 01:26:44 by illarion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ void	ft_fill_vector(t_main	*main_struct,char	**argv)
 
 void	print_stack(t_stack	*stack)
 {
-	printf("Count elements: %lu\nElements:\n", ft_size(&stack));
-	while (!ft_empty(&stack))
+	printf("Count elements: %lu\nElements:\n", ft_size(stack));
+	while (!ft_empty(stack))
 	{
-		printf("%d", ft_top(&stack));
+		printf("%d", ft_top(stack));
 		ft_pop(&stack);
-		if (!ft_empty(&stack))
+		if (!ft_empty(stack))
 			
 			
 			printf(" -> ");

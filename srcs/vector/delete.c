@@ -1,18 +1,18 @@
 #include "vector.h"
 
-bool	ft_erase_back(t_vector	*vector)
+void	ft_erase_back(t_vector	*vector)
 {
 	size_t	i;
 	int		*result;
 
 	if (vector->elements == NULL)
-		return false;
+		return ;
 	if (vector->count == 1)
 	{
 		vector->count = 0;
 		free(vector->elements);
 		vector->elements = NULL;
-		return true;
+		return ;
 	}
 	result = (int *)malloc(sizeof(int) * (vector->count - 1));
 	i = 0;
@@ -24,7 +24,6 @@ bool	ft_erase_back(t_vector	*vector)
 	free(vector->elements);
 	vector->count -= 1;
 	vector->elements = result;
-	return (true);
 }
 
 void	ft_delete_vector(t_vector	*vector)
