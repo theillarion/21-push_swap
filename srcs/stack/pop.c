@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pop.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:39:47 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/12 17:38:53 by glashli          ###   ########.fr       */
+/*   Updated: 2022/01/28 01:32:57 by illarion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,10 @@ void	ft_pop(t_stack	**head)
 {
 	t_stack	*backup;
 
-	if (head != NULL)
+	if (head != NULL && *head != NULL)
 	{
-		if (*head == NULL)
-		{
-			write(2, "Error: stack is empty\n", 22);
-			exit(EXIT_FAILURE);
-		}
-		else
-		{
-			backup = (*head)->next;
-			ft_del_elem(*head);
-			*head = backup;
-		}
-	}
-	else
-	{
-		write(2, "Error: stack is NULL\n", 21);
-		exit(EXIT_FAILURE);
+		backup = (*head)->next;
+		ft_del_elem(*head);
+		*head = backup;
 	}
 }

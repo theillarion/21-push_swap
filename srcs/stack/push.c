@@ -6,7 +6,7 @@
 /*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:05:56 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/26 18:22:13 by illarion         ###   ########.fr       */
+/*   Updated: 2022/01/28 01:35:42 by illarion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ static t_stack	*ft_create_elem(int	data)
 
 	new_elem = (t_stack*)malloc(sizeof(t_stack));
 	if (new_elem == NULL)
-	{
-		write(2, "Error: no memory allocated\n", 27);
-		exit(EXIT_FAILURE);
-	}
+		return (NULL);
 	new_elem->data = data;
 	new_elem->next = NULL;
 	return (new_elem);
@@ -42,11 +39,6 @@ void	ft_push_front(t_stack	**head, int data)
 			*head = new_head;
 		}
 	}
-	else
-	{
-		write(2, "Error: stack is NULL\n", 21);
-		exit(EXIT_FAILURE);
-	}
 }
 
 void	ft_push_array(t_stack	**head, int	*array, size_t	length)
@@ -57,11 +49,9 @@ void	ft_push_array(t_stack	**head, int	*array, size_t	length)
 	{
 		i = 0;
 		while (i < length)
-			ft_push_front(head, array[i++]);
-	}
-	else
-	{
-		write(2, "Error: stack is NULL\n", 21);
-		exit(EXIT_FAILURE);
+		{
+			ft_push_front(head, array[i]);
+			++i;
+		}
 	}
 }
