@@ -1,20 +1,17 @@
 #include "operations.h"
 
-t_vector	ft_get_copy_vector(const t_vector	vector)
+bool ft_is_sorted_vector(const t_vector	vector)
 {
-	size_t		i;
-	t_vector	new_vector;
+	size_t	i;
 
-	ft_initial_vector(&new_vector);
 	i = 0;
-	new_vector.elements = (int *)malloc(sizeof(int) * vector.count);
-	while (i < vector.count)
+	while (i < vector.count - 1)
 	{
-		new_vector.elements[i] = vector.elements[i];
+		if (vector.elements[i] > vector.elements[i + 1])
+			return (false);
 		++i;
 	}
-	new_vector.count = vector.count;
-	return (new_vector);
+	return (true);
 }
 
 bool ft_validation(const t_vector	vector)
@@ -23,8 +20,7 @@ bool ft_validation(const t_vector	vector)
 	size_t	i;
 	
 	vec = ft_get_copy_vector(vector);
-	if (!ft_sort_vector(&vec))
-		return (false);
+	ft_sort_vector(&vec);
 	i = 0;
 	while (i < vec.count - 1)
 	{
