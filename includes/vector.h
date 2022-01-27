@@ -22,6 +22,6 @@ bool		ft_sort_vector(t_vector	*vector);
 bool		ft_erase_back(t_vector	*vector);
 int			ft_get_back(const t_vector vector);
 bool		ft_empty_vector(const t_vector vector);
-t_vector	ft_get_copy_vector(const t_vector	vector)
+t_vector	ft_get_copy_vector(const t_vector	vector);
 
 #endif
