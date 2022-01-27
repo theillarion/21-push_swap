@@ -6,17 +6,20 @@
 /*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 20:48:23 by illarion          #+#    #+#             */
-/*   Updated: 2022/01/26 17:48:21 by illarion         ###   ########.fr       */
+/*   Updated: 2022/01/27 16:28:27 by illarion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "operations.h"
 
-void	ft_rotate(t_stack	**head, t_vector	*operations, int operation)
+void	ft_rotate(t_stack	**head, t_vector	*operations, bool is_stack_a)
 {
 	t_stack	*current;
 	t_stack	*backup;
+	int		operation;
 
+	if (head == NULL || *head == NULL || (*head)->next == NULL)
+		return ;
 	backup = *head;
 	*head = (*head)->next;
 	current = *head;
@@ -24,6 +27,9 @@ void	ft_rotate(t_stack	**head, t_vector	*operations, int operation)
 		current = current->next;
 	current->next = backup;
 	backup->next = NULL;
+	operation = ra;
+	if (!is_stack_a)
+		operation = rb;
 	if (ft_empty_vector(*operations) || ft_get_back(*operations) + operation != rr)
 			ft_push_back(operations, operation);
 	else
@@ -33,11 +39,14 @@ void	ft_rotate(t_stack	**head, t_vector	*operations, int operation)
 	}
 }
 
-void	ft_reverse_rotate(t_stack	**head, t_vector	*operations, int operation)
+void	ft_reverse_rotate(t_stack	**head, t_vector	*operations, bool is_stack_a)
 {
 	t_stack	*current;
 	t_stack	*backup;
+	int		operation;
 
+	if (head == NULL || *head == NULL || (*head)->next == NULL)
+		return ;
 	current = *head;
 	while (current->next->next != NULL)
 		current = current->next;
@@ -45,6 +54,9 @@ void	ft_reverse_rotate(t_stack	**head, t_vector	*operations, int operation)
 	current->next = NULL;
 	backup->next = *head;
 	*head = backup;
+	operation = rra;
+	if (!is_stack_a)
+		operation = rrb;
 	if (ft_empty_vector(*operations) || ft_get_back(*operations) + operation != rrr)
 			ft_push_back(operations, operation);
 	else
