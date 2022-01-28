@@ -35,7 +35,6 @@
 *.i*86
 *.x86_64
 *.hex
-push_swap*
 
 # Debug files
 *.dSYM/
@@ -62,7 +61,17 @@ cmake*
 # VS Code
 .vscode
 
+# Tests files and checkers
 *test*
 *checker*
 
+# Local file
 command.txt
+
+# All file/dir push_swap
+*push_swap*
+
+# Unignore
+!push_swap/
+!push_swap.h
+!push_swap.c
