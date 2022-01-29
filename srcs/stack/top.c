@@ -6,7 +6,7 @@
 /*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:05:16 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/28 01:08:00 by illarion         ###   ########.fr       */
+/*   Updated: 2022/01/28 16:51:27 by illarion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	ft_top(const t_stack	*head)
 {
 	if (head != NULL)
-		return head->data;
+		return (head->data);
 	return (INT_MIN);
 }

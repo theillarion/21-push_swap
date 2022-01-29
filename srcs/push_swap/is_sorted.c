@@ -15,7 +15,7 @@ bool	ft_stack_is_sorted(t_stack	*stack)
 	return (true);
 }
 
-bool ft_vector_is_sorted(const t_vector	vector)
+bool	ft_vector_is_sorted(const t_vector	vector)
 {
 	size_t	i;
 

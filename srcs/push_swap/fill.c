@@ -11,7 +11,7 @@ static bool	ft_chars_is_digit(const char	*str)
 	return (true);
 }
 
-void	ft_fill_vector(t_main	*main_struct,char	**argv)
+void	ft_fill_vector(t_main	*main_struct, char	**argv)
 {
 	size_t		i;
 	char		**buff;
@@ -25,7 +25,7 @@ void	ft_fill_vector(t_main	*main_struct,char	**argv)
 		{
 			if (!ft_chars_is_digit(buff[i]))
 				ft_error(main_struct, "Error");
-			ft_push_back(&main_struct->digits, ft_atoi(buff[i]));
+			ft_push_back(&main_struct->vector, ft_atoi(buff[i]));
 			free(buff[i++]);
 		}
 		free(buff);
@@ -34,12 +34,12 @@ void	ft_fill_vector(t_main	*main_struct,char	**argv)
 
 void	ft_fill_stack(t_main	*main_struct)
 {
-	int i;
+	int	i;
 
-	i = main_struct->digits.count - 1;
+	i = main_struct->vector.count - 1;
 	while (i >= 0)
 	{
-		ft_push_front(&main_struct->a, main_struct->digits.elements[i]);
+		ft_push_front(&main_struct->a, main_struct->vector.elements[i]);
 		--i;
 	}
 }

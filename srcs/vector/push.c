@@ -1,6 +1,6 @@
 #include "vector.h"
 
-void 	ft_push_back(t_vector	*vector, int element)
+void	ft_push_back(t_vector	*vector, int element)
 {
 	int		*result;
 	size_t	i;
@@ -20,5 +20,5 @@ void 	ft_push_back(t_vector	*vector, int element)
 	vector->count += 1;
 	if (vector->elements != NULL)
 		free(vector->elements);
-	vector->elements = result; 
+	vector->elements = result;
 }

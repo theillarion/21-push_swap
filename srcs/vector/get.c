@@ -17,7 +17,7 @@ t_vector	ft_get_copy_vector(const t_vector	vector)
 	return (new_vector);
 }
 
-int		ft_get_back(const t_vector vector)
+int	ft_get_back(const t_vector vector)
 {
 	if (vector.elements != NULL)
 		return (vector.elements[vector.count - 1]);

@@ -1,10 +1,10 @@
 #include "push_swap.h"
 
-bool ft_validation(const t_vector	vector)
+bool	ft_validation(const t_vector	vector)
 {
 	t_vector	vec;
-	size_t	i;
-	
+	size_t		i;
+
 	vec = ft_get_copy_vector(vector);
 	ft_sort_vector(&vec);
 	i = 0;

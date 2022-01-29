@@ -21,8 +21,11 @@ typedef enum e_operations
 }	t_operations;
 
 void	ft_swap(t_stack	**head, t_vector	*operations, bool is_stack_a);
-void	ft_push(t_stack	**src, t_stack	**dest, t_vector	*operations, bool is_stack_a);
-void	ft_rotate(t_stack	**head, t_vector	*operations, bool is_stack_a);
-void	ft_reverse_rotate(t_stack	**head, t_vector	*operations, bool is_stack_a);
+void	ft_push(t_stack	**src, t_stack	**dest, t_vector	*operations,
+			bool is_stack_a);
+void	ft_rotate(t_stack	**head, t_vector	*operations,
+			bool is_stack_a);
+void	ft_reverse_rotate(t_stack	**head, t_vector	*operations,
+			bool is_stack_a);
 
 #endif

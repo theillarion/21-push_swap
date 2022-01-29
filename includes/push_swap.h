@@ -11,7 +11,7 @@ typedef struct s_main
 {
 	t_stack		*a;
 	t_stack		*b;
-	t_vector	digits;
+	t_vector	vector;
 	t_vector	operations;
 }				t_main;
 
@@ -32,6 +32,7 @@ int		ft_min(const t_stack	*head);
 void	ft_fill_vector(t_main	*main_struct, char	**argv);
 void	ft_fill_stack(t_main	*main_struct);
 
+void	ft_non_strict_sort(t_main	*main_struct);
 void	ft_sort_full(t_main	*main_struct);
 void	ft_sort_mini(t_main	*main_struct);
 
@@ -40,6 +41,6 @@ void	ft_sort_3(t_stack	**stack, t_vector	*operations, bool is_stack_a);
 
 void	ft_main_sort(t_main	*main_struct);
 
-void ft_print_operations(t_vector	operations);
+void	ft_print_operations(t_vector	operations);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 19:25:15 by illarion          #+#    #+#             */
-/*   Updated: 2022/01/28 16:31:03 by illarion         ###   ########.fr       */
+/*   Updated: 2022/01/29 14:10:47 by illarion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	print_stack(t_stack	*stack)
 		printf("%d", ft_top(stack));
 		ft_pop(&stack);
 		if (!ft_empty(stack))
-			
-			
 			printf(" -> ");
 	}
 	printf("\n");
@@ -34,8 +32,8 @@ void	print_stack(t_stack	*stack)
 /*
 	!!!	FORBIDDEN FUNCTION	!!!
 */
-
-void	ft_print_vector(const t_vector vector)
+/*
+static void	ft_print_vector(const t_vector vector)
 {
 	size_t	i;
 
@@ -50,7 +48,7 @@ void	ft_print_vector(const t_vector vector)
 		++i;
 	}
 	printf("\n");
-}
+}*/
 
 int	main(int argc, char	**argv)
 {
@@ -60,9 +58,9 @@ int	main(int argc, char	**argv)
 	if (argc > 1)
 	{
 		ft_fill_vector(&main_struct, ++argv);
-		if (ft_vector_is_sorted(main_struct.digits))
+		if (ft_vector_is_sorted(main_struct.vector))
 			ft_success(&main_struct);
-		if (!ft_validation(main_struct.digits))
+		if (!ft_validation(main_struct.vector))
 			ft_error(&main_struct, "Error");
 		ft_fill_stack(&main_struct);
 		ft_main_sort(&main_struct);

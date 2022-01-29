@@ -2,7 +2,7 @@
 
 int	ft_max(const t_stack	*head)
 {
-	int max;
+	int	max;
 
 	max = head->data;
 	while (head != NULL)
@@ -16,7 +16,7 @@ int	ft_max(const t_stack	*head)
 
 int	ft_min(const t_stack	*head)
 {
-	int min;
+	int	min;
 
 	min = head->data;
 	while (head != NULL)

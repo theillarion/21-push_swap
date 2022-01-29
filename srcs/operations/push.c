@@ -6,13 +6,14 @@
 /*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 20:48:27 by illarion          #+#    #+#             */
-/*   Updated: 2022/01/27 16:41:58 by illarion         ###   ########.fr       */
+/*   Updated: 2022/01/28 16:48:34 by illarion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "operations.h"
 
-void	ft_push(t_stack	**src, t_stack	**dest, t_vector	*operations, bool is_stack_a)
+void	ft_push(t_stack	**src, t_stack	**dest, t_vector	*operations,
+	bool is_stack_a)
 {
 	t_stack	*backup;
 
