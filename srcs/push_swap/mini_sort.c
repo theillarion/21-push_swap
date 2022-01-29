@@ -8,32 +8,36 @@ void	ft_sort_2(t_stack	**stack, t_vector	*operations, bool is_stack_a)
 
 void	ft_sort_3(t_stack	**stack, t_vector	*operations, bool is_stack_a)
 {
-	if ( stack == NULL || ft_stack_is_sorted(*stack))
-		return ;
-	if ((*stack)->data > (*stack)->next->data)
+	if ((*stack)->data < (*stack)->next->data
+		&& (*stack)->next->data > (*stack)->next->next->data)
 	{
-		if ((*stack)->data < (*stack)->next->next->data)
+		ft_reverse_rotate(stack, operations, is_stack_a);
+		if ((*stack)->data > (*stack)->next->data)
 			ft_swap(stack, operations, is_stack_a);
-		else
-		{
-			if ((*stack)->next->data < (*stack)->next->next->data)
-				ft_rotate(stack, operations, is_stack_a);
-			else
-			{
-				ft_swap(stack, operations, is_stack_a);
-				ft_reverse_rotate(stack, operations, is_stack_a);
-			}
-		}
 	}
-	else
+	else if ((*stack)->data > (*stack)->next->data
+		&& (*stack)->next->data > (*stack)->next->next->data)
+	{
+		ft_rotate(stack, operations, is_stack_a);
+		ft_swap(stack, operations, is_stack_a);
+	}
+	else if ((*stack)->data > (*stack)->next->data
+		&& (*stack)->next->data < (*stack)->next->next->data)
 	{
 		if ((*stack)->data > (*stack)->next->next->data)
-			ft_reverse_rotate(stack, operations, is_stack_a);
-		else
-		{
-			ft_swap(stack, operations, is_stack_a);
 			ft_rotate(stack, operations, is_stack_a);
-		}
+		else
+			ft_swap(stack, operations, is_stack_a);
+	}
+}
+
+static void	ft_push_and_rotate(t_main	*main_struct)
+{
+	while (!ft_empty(main_struct->b))
+	{
+		ft_push(&main_struct->b,
+			&main_struct->a, &main_struct->operations, true);
+		ft_rotate(&main_struct->a, &main_struct->operations, true);
 	}
 }
 
@@ -46,7 +50,8 @@ static void	ft_split_stacks(t_main	*main_struct)
 	i = 0;
 	if (ft_max(main_struct->a) > ft_min(main_struct->b))
 	{
-		while (i < count_a)
+		while (i < count_a && (!ft_empty(main_struct->b)
+			|| !ft_stack_is_sorted(main_struct->a)))
 		{	
 			if (!ft_empty(main_struct->b)
 				&& ft_top(main_struct->a) > ft_top(main_struct->b))
@@ -57,20 +62,12 @@ static void	ft_split_stacks(t_main	*main_struct)
 			}
 			else
 			{
-				if (ft_empty(main_struct->b)
-					&& ft_stack_is_sorted(main_struct->a))
-					break ;
 				ft_rotate(&main_struct->a, &main_struct->operations, true);
 				++i;
 			}
 		}
 	}
-	while (!ft_empty(main_struct->b))
-	{
-		ft_push(&main_struct->b,
-			&main_struct->a, &main_struct->operations, true);
-		ft_rotate(&main_struct->a, &main_struct->operations, true);
-	}
+	ft_push_and_rotate(main_struct);
 }
 
 void	ft_sort_mini(t_main	*main_struct)
