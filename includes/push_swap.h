@@ -1,22 +1,34 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# define ABS(value) (value >= 0 ? value : -value)
+
 # include "libft.h"
 # include "operations.h"
 # include "stack.h"
 # include "vector.h"
 # include <stdio.h>
 
+typedef	struct s_value
+{
+	int min;
+	int middle;
+	int max;
+}		t_value;
 typedef struct s_main
 {
 	t_stack		*a;
 	t_stack		*b;
 	t_vector	vector;
+	t_vector	sorted_vector;
 	t_vector	operations;
+	t_value		value;
 }				t_main;
 
+void	print_stack(t_stack	*stack);
+
 int		main(int argc, char	**argv);
-bool	ft_validation(const t_vector vector);
+bool	ft_validation(const t_vector	src, t_vector	*dest);
 
 bool	ft_vector_is_sorted(const t_vector	vector);
 bool	ft_stack_is_sorted(t_stack	*stack);

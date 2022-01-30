@@ -6,9 +6,20 @@
 # include <stdbool.h>
 # include <limits.h>
 
+/*typedef	struct s_score
+{
+	size_t	rotate_all;
+	size_t	rotate_a;
+	size_t	rotate_b;
+	bool	is_reverse_a;
+	bool	is_reverse_b;
+}			t_score;*/
+
 typedef struct s_stack
 {
 	int				data;
+	int				score_a;
+	int				score_b;
 	struct s_stack	*next;
 }					t_stack;
 

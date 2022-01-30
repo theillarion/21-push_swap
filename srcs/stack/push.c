@@ -6,7 +6,7 @@
 /*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:05:56 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/28 16:52:29 by illarion         ###   ########.fr       */
+/*   Updated: 2022/01/30 19:33:35 by illarion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static t_stack	*ft_create_elem(int data)
 	if (new_elem == NULL)
 		return (NULL);
 	new_elem->data = data;
+	new_elem->score_a = 0;
+	new_elem->score_b = 0;
 	new_elem->next = NULL;
 	return (new_elem);
 }

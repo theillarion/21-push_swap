@@ -1,16 +1,15 @@
 #include "push_swap.h"
 
-bool	ft_validation(const t_vector	vector)
+bool	ft_validation(const t_vector	src, t_vector	*dest)
 {
-	t_vector	vec;
 	size_t		i;
 
-	vec = ft_get_copy_vector(vector);
-	ft_sort_vector(&vec);
+	*dest = ft_get_copy_vector(src);
+	ft_sort_vector(dest);
 	i = 0;
-	while (i < vec.count - 1)
+	while (i < dest->count - 1)
 	{
-		if (vec.elements[i] == vec.elements[i + 1])
+		if (dest->elements[i] == dest->elements[i + 1])
 			return (false);
 		++i;
 	}
