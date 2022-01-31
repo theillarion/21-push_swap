@@ -1,19 +1,5 @@
 #include "push_swap.h"
 
-bool	ft_is_non_strict_sorted(const t_vector vector)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < vector.count - 1)
-	{
-		if (vector.elements[i] < vector.elements[i + 1])
-			return (false);
-		++i;
-	}
-	return (true);
-}
-
 void	ft_main_sort(t_main	*main_struct)
 {
 	if (main_struct->vector.count == 2)

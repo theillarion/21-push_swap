@@ -43,3 +43,10 @@ void	ft_fill_stack(t_main	*main_struct)
 		--i;
 	}
 }
+
+void ft_fill_values(t_main	*main_struct)
+{
+	main_struct->value.min = main_struct->sorted_vector.elements[0];
+	main_struct->value.max = main_struct->sorted_vector.elements[main_struct->vector.count - 1];
+	main_struct->value.middle = main_struct->sorted_vector.elements[main_struct->vector.count / 2 - 1];
+}

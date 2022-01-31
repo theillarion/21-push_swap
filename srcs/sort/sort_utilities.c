@@ -1,6 +1,13 @@
 #include "push_swap.h"
 
-int	ft_max(const t_stack	*head)
+int	ft_abs(int value)
+{
+	if (value >= 0)
+		return (value);
+	return (-value);
+}
+
+int	ft_get_max(const t_stack	*head)
 {
 	int	max;
 
@@ -14,7 +21,7 @@ int	ft_max(const t_stack	*head)
 	return (max);
 }
 
-int	ft_min(const t_stack	*head)
+int	ft_get_min(const t_stack	*head)
 {
 	int	min;
 

@@ -72,6 +72,8 @@ command.txt
 *push_swap*
 Push-Swap
 
+workspace.code-workspace
+
 # Unignore
 !push_swap/
 !push_swap.h
