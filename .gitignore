@@ -70,6 +70,7 @@ command.txt
 
 # All file/dir push_swap
 *push_swap*
+Push-Swap
 
 # Unignore
 !push_swap/

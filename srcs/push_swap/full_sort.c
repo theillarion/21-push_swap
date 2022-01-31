@@ -21,7 +21,7 @@ void	ft_presort(t_main	*_main)
 		if (ft_top(_main->a) == _main->value.min
 			|| ft_top(_main->a) == _main->value.max)
 		{
-			ft_rotate(&_main->a, &_main->vector, true);
+			ft_rotate(&_main->a, &_main->operations, true);
 			continue ;
 		}
 		ft_push(&_main->a, &_main->b, &_main->operations, false);                 // 
@@ -112,7 +112,7 @@ t_stack	ft_search_min_opeartion(const	t_stack	*head)
 
 int ft_substruction(int value1, int value2)
 {
-	if (value1 + value2 < 0)
+	if (value1 == 0)
 		return (0);
 	return (value1 + value2);
 }
