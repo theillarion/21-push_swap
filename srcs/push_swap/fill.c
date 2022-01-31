@@ -2,12 +2,30 @@
 
 static bool	ft_chars_is_digit(const char	*str)
 {
-	while (*str)
+	size_t	count;
+	size_t	i;
+	bool	is_pos;
+
+	i = 0;
+	is_pos = true;
+	if (*str == '+' || *str == '-')
 	{
-		if (!ft_isdigit(*str) && *str != '-')
-			return (false);
+		if (*str == '-')
+			is_pos = false;
 		++str;
 	}
+	count = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (false);
+		++i;
+		++count;
+	}
+	if (count > 10 || (count == 10 && is_pos
+			&& ft_strncmp(str, "2147483647", count) > 0) || (count == 10
+			&& !is_pos && ft_strncmp(str, "2147483648", count) > 0))
+		return (false);
 	return (true);
 }
 
@@ -44,9 +62,11 @@ void	ft_fill_stack(t_main	*main_struct)
 	}
 }
 
-void ft_fill_values(t_main	*main_struct)
+void	ft_fill_values(t_main	*main_struct)
 {
 	main_struct->value.min = main_struct->sorted_vector.elements[0];
-	main_struct->value.max = main_struct->sorted_vector.elements[main_struct->vector.count - 1];
-	main_struct->value.middle = main_struct->sorted_vector.elements[main_struct->vector.count / 2 - 1];
+	main_struct->value.max = main_struct->sorted_vector.elements
+	[main_struct->vector.count - 1];
+	main_struct->value.middle = main_struct->sorted_vector.elements
+	[main_struct->vector.count / 2 - 1];
 }

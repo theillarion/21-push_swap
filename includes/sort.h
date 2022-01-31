@@ -4,6 +4,22 @@
 # include "push_swap.h"
 # include <stdbool.h>
 
+typedef struct s_value
+{
+	int	min;
+	int	middle;
+	int	max;
+}		t_value;
+typedef struct s_main
+{
+	t_stack		*a;
+	t_stack		*b;
+	t_vector	vector;
+	t_vector	sorted_vector;
+	t_vector	operations;
+	t_value		value;
+}				t_main;
+
 void	ft_main_sort(t_main	*main_struct);
 
 void	ft_sort_mini(t_main	*main_struct);

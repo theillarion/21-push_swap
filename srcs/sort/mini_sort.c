@@ -51,7 +51,7 @@ static void	ft_split_stacks(t_main	*main_struct)
 	if (ft_get_max(main_struct->a) > ft_get_min(main_struct->b))
 	{
 		while (i < count_a && (!ft_empty(main_struct->b)
-			|| !ft_stack_is_sorted(main_struct->a)))
+				|| !ft_stack_is_sorted(main_struct->a)))
 		{	
 			if (!ft_empty(main_struct->b)
 				&& ft_top(main_struct->a) > ft_top(main_struct->b))

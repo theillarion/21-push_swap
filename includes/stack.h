@@ -21,6 +21,6 @@ bool	ft_empty(const t_stack	*head);
 void	ft_push_front(t_stack	**head, int data);
 void	ft_push_array(t_stack	**head, int	*array, size_t	length);
 size_t	ft_size(const t_stack	*head);
-int 	ft_get_element(const t_stack	*head, size_t	index);
+int		ft_get_element(const t_stack	*head, size_t	index);
 
 #endif

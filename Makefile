@@ -43,7 +43,7 @@ debug			:	${NAME_D}
 ${NAME_D}		:	$(LIB_PATH)$(LIB_NAME) $(OBJS_MAIN_D) $(OBJS_SORT_D) $(OBJS_STACK_D) ${OBJS_VECTOR_D} $(OBJS_OPERS_D)
 					$(CC) $(INCLUDES) $(OBJS_MAIN_D) $(OBJS_SORT_D) $(OBJS_STACK_D) ${OBJS_VECTOR_D} $(OBJS_OPERS_D) -L${LIB_PATH} -l$(LIB_NAME_S) -o ${NAME_D}
 
-$(LIB_NAME)		:	
+$(LIB_PATH)$(LIB_NAME)		:	
 					@$(MAKE) -C $(LIB_PATH)
 
 clean			:

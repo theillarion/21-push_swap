@@ -10,5 +10,6 @@
 # include "vector.h"
 
 void	ft_print_vector(const t_vector vector);
+void	print_stack(t_stack	*stack);
 
 #endif

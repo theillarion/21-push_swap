@@ -1,27 +1,11 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-typedef	struct s_value
-{
-	int min;
-	int middle;
-	int max;
-}		t_value;
-typedef struct s_main
-{
-	t_stack		*a;
-	t_stack		*b;
-	t_vector	vector;
-	t_vector	sorted_vector;
-	t_vector	operations;
-	t_value		value;
-}				t_main;
 
-# include "sort.h"
 # include "libft.h"
 # include "operations.h"
 # include "stack.h"
 # include "vector.h"
-
+# include "sort.h"
 //	FORBIDDEN	HEADER
 # include "forbidden_func.h"
 
