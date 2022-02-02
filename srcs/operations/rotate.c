@@ -6,7 +6,7 @@
 /*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 20:48:23 by illarion          #+#    #+#             */
-/*   Updated: 2022/01/28 16:47:47 by illarion         ###   ########.fr       */
+/*   Updated: 2022/02/02 23:15:38 by illarion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	ft_rotate(t_stack	**head, t_vector	*operations, bool is_stack_a)
 	operation = ra;
 	if (!is_stack_a)
 		operation = rb;
-	if (ft_empty_vector(*operations)
-		|| ft_get_back(*operations) + operation != rr)
+	if (operations != NULL && (ft_empty_vector(*operations)
+		|| ft_get_back(*operations) + operation != rr)) 
 		ft_push_back(operations, operation);
-	else
+	else if (operations != NULL)
 	{
 		ft_erase_back(operations);
 		ft_push_back(operations, rr);
@@ -59,10 +59,10 @@ void	ft_reverse_rotate(t_stack	**head, t_vector	*operations,
 	operation = rra;
 	if (!is_stack_a)
 		operation = rrb;
-	if (ft_empty_vector(*operations)
-		|| ft_get_back(*operations) + operation != rrr)
+	if (operations != NULL && (ft_empty_vector(*operations)
+		|| ft_get_back(*operations) + operation != rrr))
 		ft_push_back(operations, operation);
-	else
+	else if (operations != NULL)
 	{
 		ft_erase_back(operations);
 		ft_push_back(operations, rrr);

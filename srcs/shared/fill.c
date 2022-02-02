@@ -9,22 +9,18 @@ static bool	ft_chars_is_digit(const char	*str)
 	i = 0;
 	is_pos = true;
 	if (*str == '+' || *str == '-')
-	{
-		if (*str == '-')
+		if (*(str++) == '-')
 			is_pos = false;
-		++str;
-	}
 	count = 0;
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(str[i++]))
 			return (false);
-		++i;
 		++count;
 	}
-	if (count > 10 || (count == 10 && is_pos
-			&& ft_strncmp(str, "2147483647", count) > 0) || (count == 10
-			&& !is_pos && ft_strncmp(str, "2147483648", count) > 0))
+	if (count > 10
+		|| (count == 10 && is_pos && ft_strncmp(str, "2147483647", count) > 0)
+		|| (count == 10 && !is_pos && ft_strncmp(str, "2147483648", count) > 0))
 		return (false);
 	return (true);
 }

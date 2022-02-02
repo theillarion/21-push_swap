@@ -6,7 +6,7 @@
 /*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 11:39:06 by illarion          #+#    #+#             */
-/*   Updated: 2022/01/27 19:38:25 by illarion         ###   ########.fr       */
+/*   Updated: 2022/02/03 00:00:07 by illarion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef unsigned char	t_uchar;
 
 int		ft_strncmp(const char	*str1, const char	*str2, size_t n);
 size_t	ft_strlen(const char	*str);
+char	*ft_strjoin(const char	*str1, const char	*str2);
+char	*ft_strdup(const char	*str);
 char	**ft_split(const char	*str, char symbol);
 int		ft_isdigit(int symbol);
 int		ft_atoi(const char	*str);

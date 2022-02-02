@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 19:25:15 by illarion          #+#    #+#             */
-/*   Updated: 2022/01/31 16:10:24 by glashli          ###   ########.fr       */
+/*   Updated: 2022/02/02 23:34:26 by illarion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ int	main(int argc, char	**argv)
 		ft_fill_values(&main_struct);
 		ft_main_sort(&main_struct);
 		ft_print_operations(main_struct.operations);
-		ft_deinitial_struct(&main_struct);
-		exit(EXIT_SUCCESS);
+		ft_success(&main_struct);
 	}
-	else
-		exit(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }

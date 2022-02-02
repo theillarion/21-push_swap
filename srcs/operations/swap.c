@@ -6,7 +6,7 @@
 /*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 20:23:23 by illarion          #+#    #+#             */
-/*   Updated: 2022/01/28 16:48:14 by illarion         ###   ########.fr       */
+/*   Updated: 2022/02/02 23:19:11 by illarion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	ft_swap(t_stack	**head, t_vector	*operations, bool is_stack_a)
 	operation = sa;
 	if (!is_stack_a)
 		operation = sb;
-	if (ft_empty_vector(*operations)
-		|| ft_get_back(*operations) + operation != ss)
+	if (operations != NULL && (ft_empty_vector(*operations)
+		|| ft_get_back(*operations) + operation != ss))
 		ft_push_back(operations, operation);
-	else
+	else if (operations != NULL)
 	{
 		ft_erase_back(operations);
 		ft_push_back(operations, ss);

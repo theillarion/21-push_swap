@@ -78,3 +78,6 @@ workspace.code-workspace
 !push_swap/
 !push_swap.h
 !push_swap.c
+!checker/
+!checker.h
+!checker.c
