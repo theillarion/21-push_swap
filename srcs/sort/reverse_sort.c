@@ -1,6 +1,6 @@
-#include "push_swap.h"
+#include "sort.h"
 
-bool	ft_is_non_strict_sorted(const t_vector vector)
+bool	ft_is_reverse_sorted(const t_vector vector)
 {
 	size_t	i;
 
@@ -14,7 +14,7 @@ bool	ft_is_non_strict_sorted(const t_vector vector)
 	return (true);
 }
 
-void	ft_non_strict_sort(t_main	*_main)
+void	ft_reverse_sort(t_main	*_main)
 {
 	while (ft_size(_main->a) != 3)
 		ft_push(&_main->a, &_main->b,
