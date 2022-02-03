@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 20:23:23 by illarion          #+#    #+#             */
-/*   Updated: 2022/02/02 23:19:11 by illarion         ###   ########.fr       */
+/*   Updated: 2022/02/03 16:13:38 by glashli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_swap(t_stack	**head, t_vector	*operations, bool is_stack_a)
 	if (!is_stack_a)
 		operation = sb;
 	if (operations != NULL && (ft_empty_vector(*operations)
-		|| ft_get_back(*operations) + operation != ss))
+			|| ft_get_back(*operations) + operation != ss))
 		ft_push_back(operations, operation);
 	else if (operations != NULL)
 	{

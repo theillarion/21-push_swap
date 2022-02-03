@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: illarion <illarion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 20:48:23 by illarion          #+#    #+#             */
-/*   Updated: 2022/02/02 23:15:38 by illarion         ###   ########.fr       */
+/*   Updated: 2022/02/03 16:13:21 by glashli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_rotate(t_stack	**head, t_vector	*operations, bool is_stack_a)
 	if (!is_stack_a)
 		operation = rb;
 	if (operations != NULL && (ft_empty_vector(*operations)
-		|| ft_get_back(*operations) + operation != rr)) 
+			|| ft_get_back(*operations) + operation != rr))
 		ft_push_back(operations, operation);
 	else if (operations != NULL)
 	{
@@ -60,7 +60,7 @@ void	ft_reverse_rotate(t_stack	**head, t_vector	*operations,
 	if (!is_stack_a)
 		operation = rrb;
 	if (operations != NULL && (ft_empty_vector(*operations)
-		|| ft_get_back(*operations) + operation != rrr))
+			|| ft_get_back(*operations) + operation != rrr))
 		ft_push_back(operations, operation);
 	else if (operations != NULL)
 	{
