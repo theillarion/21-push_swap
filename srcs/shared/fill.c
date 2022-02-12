@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static bool	ft_chars_is_digit(const char	*str)
+static bool	ft_prevalidation(const char	*str)
 {
 	size_t	count;
 	size_t	i;
@@ -18,7 +18,7 @@ static bool	ft_chars_is_digit(const char	*str)
 			return (false);
 		++count;
 	}
-	if (count > 10
+	if (count > 10 || count == 0
 		|| (count == 10 && is_pos && ft_strncmp(str, "2147483647", count) > 0)
 		|| (count == 10 && !is_pos && ft_strncmp(str, "2147483648", count) > 0))
 		return (false);
@@ -37,8 +37,12 @@ void	ft_fill_vector(t_main	*main_struct, char	**argv)
 		buff = ft_split(*(argv++), ' ');
 		while (buff[i] != NULL)
 		{
-			if (!ft_chars_is_digit(buff[i]))
+			if (!ft_prevalidation(buff[i]))
+			{
+				free(buff[i]);
+				free(buff);
 				ft_error(main_struct, "Error");
+			}
 			ft_push_back(&main_struct->vector, ft_atoi(buff[i]));
 			free(buff[i++]);
 		}

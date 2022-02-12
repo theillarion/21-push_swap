@@ -36,17 +36,23 @@ static bool	ft_fill_vector_checker(t_vector	*vector, const char	*buff)
 
 void	ft_fill_operations(t_main	*main_struct)
 {
+	char	**operations;
 	char	*buff;
+	size_t	i;
 
-	buff = get_next_line(0);
-	while (buff != NULL)
+	buff = ft_read(main_struct, 0);
+	i = 0;
+	operations = ft_split(buff, '\n');
+	while (operations && operations[i])
 	{
-		if (ft_fill_vector_checker(&main_struct->operations, buff) == false)
+		if (!ft_fill_vector_checker(&main_struct->operations, operations[i]))
 		{
-			free(buff);
+			while (operations[i])
+				free(operations[i++]);
+			free(operations);
 			ft_error(main_struct, "Error");
 		}
-		free(buff);
-		buff = get_next_line(0);
+		free(operations[i++]);
 	}
+	free(operations);
 }
