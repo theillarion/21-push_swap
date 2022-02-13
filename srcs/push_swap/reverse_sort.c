@@ -1,4 +1,4 @@
-#include "sort.h"
+#include "push_swap.h"
 
 static int	ft_get_max_index(const t_stack	*head)
 {
