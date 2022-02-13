@@ -1,11 +1,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft.h"
-# include "operations.h"
-# include "stack.h"
-# include "vector.h"
-# include "shared.h"
 # include "sort.h"
 //	FORBIDDEN	HEADER
 # include "forbidden_func.h"

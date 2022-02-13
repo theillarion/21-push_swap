@@ -1,8 +1,7 @@
 #ifndef SORT_H
 # define SORT_H
 
-# include "push_swap.h"
-# include <stdbool.h>
+# include "shared.h"
 
 void	ft_main_sort(t_main	*main_struct);
 
