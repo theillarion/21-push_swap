@@ -52,8 +52,11 @@ bonus_debug		:	${NAME_BONUS_D}
 ${NAME_BONUS_D}	:	${LIB_D} ${HEADER_BONUS} ${HEADERS_SHARED} $(OBJS_BONUS_D) $(OBJS_SHARED_D)
 					$(CC) $(INCLUDES) $(OBJS_BONUS_D) $(OBJS_SHARED_D) -L${LIB_PATH} -l$(LIB_NAME_S) -o ${NAME_BONUS_D}
 
-$(LIB_PATH)$(LIB_NAME)		:	
+${LIB}			:	
 					@$(MAKE) -C $(LIB_PATH)
+
+${LIB_D}			:	
+					@$(MAKE) debug -C $(LIB_PATH)
 
 clean			:
 					$(RM) ${OBJS} ${OBJS_BONUS} $(OBJS_SHARED) $(OBJS_D) $(OBJS_BONUS_D) $(OBJS_SHARED_D)
